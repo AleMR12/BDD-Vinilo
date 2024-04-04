@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Identidad</title>
+
+    <!-- Ponemos el icono en la ventana -->
+    <link rel="icon" type="image/x-icon" href="../../Mi-Proyecto/Imagenes/Extras/IsotipoMV.png">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #828282, #000000);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            /* Ancho máximo del formulario */
+            width: 100%;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            /* Ancho ajustado para compensar el padding */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ff5500;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="../PHP/confirmarIdentidad.php" method="post">
+        <h2>Iniciar Sesión</h2>
+        <label for="usuario">Usuario:</label>
+        <input type="text" name="usuario" id="usuario" required>
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" name="contrasena" id="contrasena" required>
+        <input type="submit" value="Iniciar Sesión">
+    </form>
+</body>
+
+</html>

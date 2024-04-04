@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Imagen</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #828282, #000000);
+            /* Fondo degradado */
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+        }
+
+        label {
+            font-size: 18px;
+            color: #333;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        textarea,
+        input[type="number"] {
+            width: calc(100% - 1rem);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: .5rem;
+        }
+
+        textarea {
+            resize: none;
+            /* Deshabilitar el redimensionamiento */
+        }
+
+        input[type="file"] {
+            display: none;
+            /* Ocultamos el input original */
+        }
+
+        input[type="file"]:focus+.custom-file-upload {
+            border-color: #999;
+        }
+
+        input[type="file"]:focus+.custom-file-upload::before {
+            border-color: #999;
+        }
+
+        .custom-file-upload::before {
+            content: 'Selecciona tu archivo';
+            position: absolute;
+            top: 10;
+            left: 0;
+            right: 0;
+            visibility: visible;
+        }
+
+        /* Estilos para el contenedor del archivo seleccionado */
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-align: center;
+            /* Centra el texto horizontalmente */
+            
+        }
+
+        /* Estilos para el texto dentro del contenedor */
+        .custom-file-upload span {
+            display: inline-block;
+            max-width: calc(100% - 20px);
+            /* Ajusta el ancho máximo */
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-right: 5px;
+            vertical-align: middle;
+            /* Centra el texto verticalmente */
+        
+        }
+
+        .custom-file-upload.file-selected::before {
+            visibility: hidden;
+        }
+
+        .custom-file-upload.file-selected span {
+            visibility: visible;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            background-color: #ff7f2ad5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #ff5500;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="../PHP/ProcesarImagen.php" method="post" enctype="multipart/form-data">
+        <label for="imagen">Portada del disco:</label>
+        <input type="file" name="imagen" id="imagen" aria-label="Archivo" onchange="updateFileName(this)">
+        <label class="custom-file-upload" for="imagen"><span></span></label>
+        <br><br>
+        <label for="nombre">Nombre del disco:</label>
+        <input type="text" name="nombre" id="nombre" required>
+        <br><br>
+        <label for="descripcion">Descripción:</label>
+        <textarea name="descripcion" id="descripcion" cols="30" rows="5" required></textarea>
+        <br><br>
+        <label for="precio">Precio:</label>
+        <input type="text" name="precio" id="precio" pattern="\d+(\.\d{1,2})?"
+            title="Debe ser un número decimal válido (p. ej., 10.99)" required>
+        <br><br>
+        <label for="existencias">Existencias:</label>
+        <input type="number" name="existencias" id="existencias" required>
+        <br><br>
+        <button type="submit">Subir</button>
+    </form>
+
+    <!-- Script para cambiar el nombre de "Seleccciona tu archivo" al nombre del archivo -->
+    <script>
+        function updateFileName(input) {
+            var fileName = input.files[0].name;
+            var label = input.nextElementSibling.querySelector('span');
+            label.textContent = fileName;
+            input.nextElementSibling.classList.add('file-selected');
+        }
+    </script>
+</body>
+
+</html>
