@@ -1,51 +1,104 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Despedida - Mundo Vinilo</title>
+
+    <!-- Añadimos CSS -->
+    <link rel="stylesheet" type="text/css" href="../../Mi-Proyecto/CSS/Reset.css">
+
+    <!-- Añadimos Iconos de Google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Fuente de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300&display=swap" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #828282, #000000); /* Fondo degradado */
-            font-family: Arial, sans-serif;
+            background-image: url(../../Mi-Proyecto/Imagenes/Extras/FondoBDD.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
+            color: white;
         }
+
         h1 {
             font-size: 48px;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            text-align: center;
         }
+
+        /* Estilos para el icono de ir hacia atrás */
+        .icon-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+        }
+
+        .icon-container i {
+            transition: color 0.3s ease; /* Añade una animación de transición para el cambio de color */
+        }
+
+        .icon-container i:hover {
+            color: #a62f2f; /* Cambia el color al pasar el ratón por encima */
+        }
+
         p {
             font-size: 24px;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            text-align: center;
         }
+
+        /* Estilos para centrar el botón horizontalmente */
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+
         button {
             padding: 10px 20px;
             font-size: 18px;
-            background-color: #ff6600;
+            background-color: #000000;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         button:hover {
-            background-color: #ff6600;
+            background-color: #a62f2f;
         }
     </style>
 </head>
+
 <body>
+    <a href="../HTML/Index.html">
+        <!-- Metemos el icono de ir hacia atrás -->
+        <div class="icon-container">
+            <i class="material-icons-outlined">arrow_back_ios</i>
+        </div>
+    </a>
     <div>
         <h1>¡Archivo correctamente subido!</h1>
         <p>Pulsa el botón si quieres añadir otra foto o, por el contrario, cierra la página si has terminado.</p>
-        <a href="../HTML/InsertarDisco.html"><button>Subir otra foto</button></a>
+        <!-- Agregamos un contenedor para centrar el botón horizontalmente -->
+        <div class="button-container">
+            <a href="../HTML/InsertarDisco.html"><button>Subir otra foto</button></a>
+        </div>
     </div>
 </body>
+
 </html>
