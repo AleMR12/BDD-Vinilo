@@ -33,7 +33,7 @@ if (isset($_FILES["imagen"])) {
     // Ejecutar la consulta
     if ($conexion->query($sql) === TRUE) {
         // Redirigir a la página de despedida
-        header("Location: ../HTML/DespedidaBasedeDatos.html");
+        header("Location: ../HTML/DespedidaDiscos.html");
         exit(); // Finalizar el script para evitar que se ejecute más código después de la redirección
     } else {
         echo "Error al guardar los datos en la base de datos: " . $conexion->error;
