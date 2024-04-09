@@ -1,16 +1,16 @@
     <?php
     
-    //Conexion a BDD
-    require('../Mi-Proyecto/PHP/conexionBDD.php');
+    //Conexion a la BDD
+    require('../../Mi-Proyecto/PHP/conexionBDD.php');
 
     // Verifica si el formulario ha sido enviado
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $usuario = $conn->real_escape_string($_POST['usuario']);
+    $usuario = $conexion->real_escape_string($_POST['usuario']);
     $contrasena = $_POST['contrasena'];
 
     // Consulta SQL para obtener la contraseña del usuario
     $sql = "SELECT Contraseña FROM usuarios WHERE Nombre = ?";
-    $stmt = $conn->prepare($sql);
+    $stmt = $conexion->prepare($sql);
     $stmt->bind_param("s", $usuario);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -38,5 +38,5 @@
     }
 
     // Cerrar conexión
-    $conn->close();
+    $conexion->close();
     ?>

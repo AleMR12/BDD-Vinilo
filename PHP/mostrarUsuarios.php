@@ -91,12 +91,12 @@
 
     <?php
     
-    // Conexión a la base de datos
-    require('../Mi-Proyecto/PHP/conexionBDD.php');
+    //Conexion a la BDD
+    require('../../Mi-Proyecto/PHP/conexionBDD.php');
 
     // Consulta a la base de datos para obtener los usuarios
     $sql = "SELECT * FROM usuarios";
-    $result = $conn->query($sql);
+    $result = $conexion->query($sql);
 
     if ($result->num_rows > 0) {
         // Mostrar los datos de cada usuario

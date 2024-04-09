@@ -1,7 +1,7 @@
 <?php
 
-// Conexión a la base de datos
-require('../Mi-Proyecto/PHP/conexionBDD.php');
+//Conexion a la BDD
+require('../../Mi-Proyecto/PHP/conexionBDD.php');
 
 // Obtener datos del formulario
 $nombre = $_POST['nombre'];
@@ -20,7 +20,7 @@ if ($contraseña !== $repetircontraseña) {
 
 // Verificar si ya existe un usuario con el mismo correo electrónico
 $sql_check_email = "SELECT COUNT(*) AS count FROM usuarios WHERE Correo = ?";
-$stmt_check_email = $conn->prepare($sql_check_email);
+$stmt_check_email = $conexion->prepare($sql_check_email);
 $stmt_check_email->bind_param("s", $correo);
 $stmt_check_email->execute();
 $result_check_email = $stmt_check_email->get_result();
@@ -39,7 +39,7 @@ $contraseña_encriptada = password_hash($contraseña, PASSWORD_DEFAULT);
 $sql = "INSERT INTO usuarios (Nombre, Apellido1, Apellido2, Correo, Contraseña) VALUES (?, ?, ?, ?, ?)";
 
 // Preparar la declaración
-$stmt = $conn->prepare($sql);
+$stmt = $conexoin->prepare($sql);
 
 // Vincular los parámetros con los valores
 $stmt->bind_param("sssss", $nombre, $apellido1, $apellido2, $correo, $contraseña_encriptada);
@@ -53,4 +53,4 @@ if ($stmt->execute()) {
 
 // Cerrar la conexión
 $stmt->close();
-$conn->close();
+$conexion->close();

@@ -123,12 +123,12 @@
     if(isset($_GET['id'])) {
         $usuario_id = $_GET['id'];
 
-        // Conexión a la base de datos
-        require('../Mi-Proyecto/PHP/conexionBDD.php');
+        //Conexion a la BDD
+        require('../../Mi-Proyecto/PHP/conexionBDD.php');
 
         // Consulta a la base de datos para obtener los datos del usuario seleccionado
         $sql = "SELECT * FROM usuarios WHERE ID = $usuario_id";
-        $result = $conn->query($sql);
+        $result = $conexion->query($sql);
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
@@ -149,7 +149,7 @@
         }
 
         // Cerrar conexión
-        $conn->close();
+        $conexion->close();
     } else {
         echo "<h1>ID de usuario no especificado.</h1>";
     }

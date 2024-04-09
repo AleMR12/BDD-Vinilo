@@ -13,7 +13,7 @@ if(isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['apellido1']) 
     $contraseña_hasheada = password_hash($contraseña, PASSWORD_DEFAULT);
 
     //Conexion a la BDD
-    require('../Mi-Proyecto/PHP/conexionBDD.php');
+    require('../../Mi-Proyecto/PHP/conexionBDD.php');
 
     // Actualizar los datos del usuario en la base de datos con la contraseña hasheada
     $sql = "UPDATE usuarios SET Nombre='$nombre', Apellido1='$apellido1', Apellido2='$apellido2', Correo='$correo', Contraseña='$contraseña_hasheada' WHERE ID=$usuario_id";
@@ -21,7 +21,7 @@ if(isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['apellido1']) 
     if ($conn->query($sql) === TRUE) {
         echo "Los datos del usuario se han actualizado correctamente.";
     } else {
-        echo "Error al actualizar los datos del usuario: " . $conn->error;
+        echo "Error al actualizar los datos del usuario: " . $conexion->error;
     }
 
     // Cerrar conexión
