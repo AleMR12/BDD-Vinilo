@@ -1,17 +1,7 @@
     <?php
-    // Establecer la conexión con la base de datos
-    $servername = "localhost"; // Cambia esto por el nombre de tu servidor de base de datos
-    $username = "root"; // Cambia esto por tu nombre de usuario de la base de datos
-    $password = ""; // Cambia esto por tu contraseña de la base de datos
-    $dbname = "mundovinilo"; // Cambia esto por el nombre de tu base de datos
-
-    // Crear conexión
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Comprobar la conexión
-    if ($conn->connect_error) {
-        die("Error en la conexión: " . $conn->connect_error);
-    }
+    
+    //Conexion a BDD
+    require('../Mi-Proyecto/PHP/conexionBDD.php');
 
     // Verifica si el formulario ha sido enviado
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {

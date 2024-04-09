@@ -18,13 +18,8 @@ if (isset($_FILES["imagen"])) {
     $precio = $_POST['precio'];
     $existencias = $_POST['existencias'];
 
-    // Conectar a la base de datos
-    $conexion = new mysqli("localhost", "root", "", "mundovinilo");
-
-    // Verificar la conexión
-    if ($conexion->connect_error) {
-        die("Error al conectar con la base de datos: " . $conexion->connect_error);
-    }
+    // Conexión a la base de datos
+    require('../Mi-Proyecto/PHP/conexionBDD.php');
 
     // Preparar la consulta SQL para insertar los datos en la tabla discos
     $sql = "INSERT INTO discos (Nombre, Descripción, Precio, Existencias, Foto) 

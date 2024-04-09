@@ -1,17 +1,7 @@
 <?php
-// Configuración de la conexión a la base de datos
-$servername = "localhost"; // Cambia esto por tu servidor de base de datos
-$username = "root"; // Cambia esto por tu nombre de usuario de MySQL
-$password = ""; // Cambia esto por tu contraseña de MySQL
-$database = "mundovinilo"; // Cambia esto por el nombre de tu base de datos
 
-// Crear conexión
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Verificar conexión
-if ($conn->connect_error) {
-    die("La conexión ha fallado: " . $conn->connect_error);
-}
+// Conexión a la base de datos
+require('../Mi-Proyecto/PHP/conexionBDD.php');
 
 // Obtener datos del formulario
 $nombre = $_POST['nombre'];
@@ -24,7 +14,21 @@ $repetircontraseña = $_POST['repetircontraseña'];
 // Verificar si las contraseñas coinciden
 if ($contraseña !== $repetircontraseña) {
     // Redirigir al formulario de registro otra vez en caso de fallar
-    header("Location: ../HTML/InsertarUsuarios.html");
+    header("Location: ../HTML/errorContraseñaUsuarios.html");
+    exit();
+}
+
+// Verificar si ya existe un usuario con el mismo correo electrónico
+$sql_check_email = "SELECT COUNT(*) AS count FROM usuarios WHERE Correo = ?";
+$stmt_check_email = $conn->prepare($sql_check_email);
+$stmt_check_email->bind_param("s", $correo);
+$stmt_check_email->execute();
+$result_check_email = $stmt_check_email->get_result();
+$count = $result_check_email->fetch_assoc()['count'];
+
+if ($count > 0) {
+    // Si el correo ya está en uso, redirigir al formulario con un mensaje de error
+    header("Location: ../HTML/errorCorreoUsuarios.html");
     exit();
 }
 
@@ -42,7 +46,7 @@ $stmt->bind_param("sssss", $nombre, $apellido1, $apellido2, $correo, $contraseñ
 
 // Ejecutar la consulta
 if ($stmt->execute()) {
-    header("Location: ../HTML/DespedidaUsuarios.html");;
+    header("Location: ../HTML/DespedidaUsuarios.html");
 } else {
     echo "Error al registrar el usuario: " . $stmt->error;
 }
@@ -50,4 +54,3 @@ if ($stmt->execute()) {
 // Cerrar la conexión
 $stmt->close();
 $conn->close();
-?>

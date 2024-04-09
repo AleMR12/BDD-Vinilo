@@ -12,18 +12,8 @@ if(isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['apellido1']) 
     // Hashear la contraseña
     $contraseña_hasheada = password_hash($contraseña, PASSWORD_DEFAULT);
 
-    // Conexión a la base de datos
-    $servername = "localhost"; // Cambia esto por tu servidor de base de datos
-    $username = "root"; // Cambia esto por tu nombre de usuario de MySQL
-    $password = ""; // Cambia esto por tu contraseña de MySQL
-    $database = "mundovinilo"; // Cambia esto por el nombre de tu base de datos
-
-    $conn = new mysqli($servername, $username, $password, $database);
-
-    // Verificar conexión
-    if ($conn->connect_error) {
-        die("La conexión ha fallado: " . $conn->connect_error);
-    }
+    //Conexion a la BDD
+    require('../Mi-Proyecto/PHP/conexionBDD.php');
 
     // Actualizar los datos del usuario en la base de datos con la contraseña hasheada
     $sql = "UPDATE usuarios SET Nombre='$nombre', Apellido1='$apellido1', Apellido2='$apellido2', Correo='$correo', Contraseña='$contraseña_hasheada' WHERE ID=$usuario_id";

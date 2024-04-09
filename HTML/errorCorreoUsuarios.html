@@ -207,6 +207,9 @@
             <br><br>
             <label for="correo">Correo:</label>
             <input type="email" name="correo" id="correo" required>
+            <?php if(isset($_GET['error']) && $_GET['error'] === 'email_in_use'): ?>
+                <p class="error-message">Este correo ya está en uso. Por favor, utiliza otro correo.</p>
+            <?php endif; ?>
             <br>
             <label for="contraseña">Contraseña:</label>
             <input type="password" name="contraseña" id="contraseña" required>

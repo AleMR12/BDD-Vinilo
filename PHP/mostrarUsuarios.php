@@ -90,18 +90,9 @@
     <h1>Lista de Usuarios</h1>
 
     <?php
+    
     // Conexión a la base de datos
-    $servername = "localhost"; // Cambia esto por tu servidor de base de datos
-    $username = "root"; // Cambia esto por tu nombre de usuario de MySQL
-    $password = ""; // Cambia esto por tu contraseña de MySQL
-    $database = "mundovinilo"; // Cambia esto por el nombre de tu base de datos
-
-    $conn = new mysqli($servername, $username, $password, $database);
-
-    // Verificar conexión
-    if ($conn->connect_error) {
-        die("La conexión ha fallado: " . $conn->connect_error);
-    }
+    require('../Mi-Proyecto/PHP/conexionBDD.php');
 
     // Consulta a la base de datos para obtener los usuarios
     $sql = "SELECT * FROM usuarios";

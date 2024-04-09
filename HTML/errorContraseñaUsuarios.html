@@ -213,6 +213,9 @@
             <br><br>
             <label for="repetircontraseña">Repetir contraseña:</label>
             <input type="password" name="repetircontraseña" id="repetircontraseña" required>
+            <?php if(isset($_GET['error']) && $_GET['error'] === 'password_mismatch'): ?>
+                <p class="error-message">Las contraseñas no coinciden. Por favor, inténtalo de nuevo.</p>
+            <?php endif; ?>
             <br>
             <button type="submit">Registrar</button>
         </form>
