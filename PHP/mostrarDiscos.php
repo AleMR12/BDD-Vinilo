@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Usuarios - Mundo Vinilo</title>
+    <title>Lista de Discos - Mundo Vinilo</title>
 
     <!-- Añadimos CSS -->
     <link rel="stylesheet" type="text/css" href="../../Mi-Proyecto/CSS/Reset.css">
@@ -48,33 +48,35 @@
         }
 
         .icon-container i {
-            transition: color 0.3s ease; /* Añade una animación de transición para el cambio de color */
+            transition: color 0.3s ease;
+            /* Añade una animación de transición para el cambio de color */
         }
 
         .icon-container i:hover {
-            color: #a62f2f; /* Cambia el color al pasar el ratón por encima */
-            
+            color: #a62f2f;
+            /* Cambia el color al pasar el ratón por encima */
         }
 
-        .usuario-list {
+        .disco-list {
             list-style-type: none;
             padding: 0;
             text-align: center;
             margin-top: 50px;
         }
 
-        .usuario-item {
+        .disco-item {
             margin-bottom: 20px;
         }
 
-        .usuario-item a {
+        .disco-item a {
             text-decoration: none;
             color: white;
             transition: color 0.3s ease;
         }
 
-        .usuario-item a:hover {
-            color: #a62f2f; /* Cambia el color al pasar el ratón por encima */
+        .disco-item a:hover {
+            color: #a62f2f;
+            /* Cambia el color al pasar el ratón por encima */
         }
     </style>
 </head>
@@ -87,26 +89,26 @@
         </div>
     </a>
 
-    <h1>Lista de Usuarios</h1>
+    <h1>Lista de Discos</h1>
 
     <?php
-    
+
     //Conexion a la BDD
     require('../../Mi-Proyecto/PHP/conexionBDD.php');
 
-    // Consulta a la base de datos para obtener los usuarios
-    $sql = "SELECT * FROM usuarios";
+    // Consulta a la base de datos para obtener los discos
+    $sql = "SELECT * FROM discos";
     $result = $conexion->query($sql);
 
     if ($result->num_rows > 0) {
-        // Mostrar los datos de cada usuario
-        echo "<ul class='usuario-list'>";
-        while($row = $result->fetch_assoc()) {
-            echo "<li class='usuario-item'><a href='editarUsuarios.php?id=" . $row["ID"] . "'>" . $row["Nombre"] . " " . $row["Apellido1"] . " - " . $row["Correo"] . "</a></li>";
+        // Mostrar los datos de cada disco
+        echo "<ul class='disco-list'>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<li class='disco-item'><a href='editarDiscos.php?id=" . $row["ID"] . "'>" . $row["Nombre"] . " - $" . $row["Precio"] . "</a></li>";
         }
         echo "</ul>";
     } else {
-        echo "No hay usuarios registrados.";
+        echo "No hay discos registrados.";
     }
 
     // Cerrar conexión

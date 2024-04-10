@@ -18,14 +18,16 @@ if(isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['apellido1']) 
     // Actualizar los datos del usuario en la base de datos con la contraseña hasheada
     $sql = "UPDATE usuarios SET Nombre='$nombre', Apellido1='$apellido1', Apellido2='$apellido2', Correo='$correo', Contraseña='$contraseña_hasheada' WHERE ID=$usuario_id";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Los datos del usuario se han actualizado correctamente.";
+    if ($conexion->query($sql) === TRUE) {
+        // Redireccionar a la página de despedida
+        header("Location: ../HTML/DespedidaModificarUsuarios.html");
+        exit();
     } else {
-        echo "Error al actualizar los datos del usuario: " . $conexion->error;
+        echo "Error al actualizar los datos del disco: " . $conexion->error;
     }
 
     // Cerrar conexión
-    $conn->close();
+    $conexion->close();
 } else {
     echo "No se recibieron los datos del formulario correctamente.";
 }
