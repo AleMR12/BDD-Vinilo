@@ -9,30 +9,45 @@
     <!-- Ponemos el icono en la ventana -->
     <link rel="icon" type="image/x-icon" href="../../Mi-Proyecto/Imagenes/Extras/IsotipoMV.png">
 
+    <!-- Añadimos Iconos de Google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Fuente de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300&display=swap" rel="stylesheet">
+
+    <!-- Añadimos CSS -->
+    <link rel="stylesheet" type="text/css" href="../../Mi-Proyecto/CSS/Reset.css">
+
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #828282, #000000);
-            /* Fondo degradado */
-            font-family: Arial, sans-serif;
+            background-image: url(../../Mi-Proyecto/Imagenes/Extras/FondoBDD.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
         }
 
-        h1 {
-            margin-bottom: 2rem;
-        }
-
         .container {
             text-align: center;
+            margin-top: 1rem; /* Ajusta el margen superior según sea necesario */
+        }
+
+        h1{
+
+            margin-bottom: 1rem;
+
         }
 
         .button {
-            background-color: #ff6600;
+            background-color: #a62f2f;
             color: white;
             padding: 15px 30px;
             font-size: 18px;
@@ -46,14 +61,40 @@
         }
 
         .button:hover {
-            background-color: #c34100;
+            background-color: #932a2a;
+        }
+
+        .icon-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .icon-container i {
+            transition: color 0.3s ease; /* Añade una animación de transición para el cambio de color */
+        }
+
+        a {
+            color: white;
+        }
+
+        a i:hover {
+            color: #a62f2f;
         }
     </style>
 </head>
 
 <body>
+
+    <a href="../HTML/Index.html">
+        <!-- Metemos el icono de ir hacia atrás -->
+        <div class="icon-container">
+            <i class="material-icons-outlined">arrow_back_ios</i>
+        </div>
+    </a>
+
     <div class="container">
-        <h1>Selecciona una opción</h1>
+        <h1>¿Qué quieres hacer?</h1>
         <a href="../HTML/Insertar.html" class="button">Insertar</a>
         <a href="../HTML/Modificar.html" class="button">Modificar</a>
         <a href="../HTML/Eliminar.html" class="button">Eliminar</a>

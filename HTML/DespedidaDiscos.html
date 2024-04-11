@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mundo Vinilo</title>
+    <title>Despedida - Mundo Vinilo</title>
 
     <!-- Ponemos el icono en la ventana -->
     <link rel="icon" type="image/x-icon" href="../../Mi-Proyecto/Imagenes/Extras/IsotipoMV.png">
+
+    <!-- Añadimos CSS -->
+    <link rel="stylesheet" type="text/css" href="../../Mi-Proyecto/CSS/Reset.css">
 
     <!-- Añadimos Iconos de Google -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
@@ -15,9 +19,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300&display=swap" rel="stylesheet">
-
-    <!-- Añadimos CSS -->
-    <link rel="stylesheet" type="text/css" href="../../Mi-Proyecto/CSS/Reset.css">
 
     <style>
         body {
@@ -28,72 +29,79 @@
             background-size: cover;
             height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
         }
 
-        .container {
-            text-align: center;
-            margin-top: 1rem; /* Ajusta el margen superior según sea necesario */
-        }
-
         h1 {
-            margin-bottom: 1rem;
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .button {
-            background-color: #a62f2f;
-            color: white;
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            margin: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .button:hover {
-            background-color: #932a2a;
-        }
-
+        /* Estilos para el icono de ir hacia atrás */
         .icon-container {
             position: absolute;
             top: 10px;
             left: 10px;
+            color: white;
         }
 
         .icon-container i {
             transition: color 0.3s ease; /* Añade una animación de transición para el cambio de color */
         }
 
-        a {
-            color: white;
+        .icon-container i:hover {
+            color: #a62f2f; /* Cambia el color al pasar el ratón por encima */
         }
 
-        a i:hover {
-            color: #a62f2f;
+        p {
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Estilos para centrar el botón horizontalmente */
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ab3434;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #871e1e;
         }
     </style>
 </head>
 
 <body>
-    <a href="../HTML/SeleccionaOpcion.html">
+    <a href="../HTML/Index.html">
         <!-- Metemos el icono de ir hacia atrás -->
         <div class="icon-container">
             <i class="material-icons-outlined">arrow_back_ios</i>
         </div>
     </a>
-
-    <div class="container">
-        <h1>¿Qué quieres modificar?</h1>
-        <a href="../PHP/mostrarDiscos.php" class="button">Disco</a>
-        <a href="#" class="button">Artista</a>
-        <a href="../PHP/mostrarUsuarios.php" class="button">Usuarios</a>
+    <div>
+        <h1>¡Archivo correctamente subido!</h1>
+        <p>Pulsa el botón si quieres añadir otro disco o, por el contrario, cierra la página si has terminado.</p>
+        <!-- Agregamos un contenedor para centrar el botón horizontalmente -->
+        <div class="button-container">
+            <a href="../HTML/InsertarDisco.html"><button>Subir otro disco</button></a>
+        </div>
     </div>
 </body>
+
 </html>

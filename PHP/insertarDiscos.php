@@ -6,11 +6,13 @@ if (isset($_FILES["imagen"])) {
     $tipo_imagen = $_FILES["imagen"]["type"];
     $size_imagen = $_FILES["imagen"]["size"];
 
-    // Ruta de la carpeta destino del servidor para la imagen
+    // Ruta de la carpeta destino relativa a $_SERVER['DOCUMENT_ROOT']
     $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/Proyectos/Mi-Proyecto/Imagenes/BD/';
 
     // Mover el archivo de la carpeta temporal a la carpeta destino
     move_uploaded_file($_FILES["imagen"]["tmp_name"], $carpeta_destino . $nombre_imagen);
+
+
 
     // Guardar la información en la base de datos
     $nombre = $_POST['nombre'];
@@ -18,13 +20,8 @@ if (isset($_FILES["imagen"])) {
     $precio = $_POST['precio'];
     $existencias = $_POST['existencias'];
 
-    // Conectar a la base de datos
-    $conexion = new mysqli("localhost", "root", "", "mundovinilo");
-
-    // Verificar la conexión
-    if ($conexion->connect_error) {
-        die("Error al conectar con la base de datos: " . $conexion->connect_error);
-    }
+    // Conexión a la base de datos
+    require('../../Mi-Proyecto/PHP/conexionBDD.php');
 
     // Preparar la consulta SQL para insertar los datos en la tabla discos
     $sql = "INSERT INTO discos (Nombre, Descripción, Precio, Existencias, Foto) 
@@ -33,7 +30,7 @@ if (isset($_FILES["imagen"])) {
     // Ejecutar la consulta
     if ($conexion->query($sql) === TRUE) {
         // Redirigir a la página de despedida
-        header("Location: ../HTML/DespedidaBasedeDatos.html");
+        header("Location: ../HTML/DespedidaDiscos.html");
         exit(); // Finalizar el script para evitar que se ejecute más código después de la redirección
     } else {
         echo "Error al guardar los datos en la base de datos: " . $conexion->error;
@@ -44,4 +41,3 @@ if (isset($_FILES["imagen"])) {
 } else {
     echo "No se ha enviado ninguna imagen.";
 }
-?>

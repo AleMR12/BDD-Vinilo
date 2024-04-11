@@ -5,21 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subir Imagen</title>
+
+    <!-- Añadimos CSS -->
+    <link rel="stylesheet" type="text/css" href="../../Mi-Proyecto/CSS/Reset.css">
+
+    <!-- Añadimos Iconos de Google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Fuente de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300&display=swap" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #828282, #000000);
-            /* Fondo degradado */
-            font-family: Arial, sans-serif;
+            background-image: url(../../Mi-Proyecto/Imagenes/Extras/FondoBDD.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Estilos para el icono de ir hacia atrás */
+        .icon-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+        }
+
+        .icon-container i {
+            transition: color 0.3s ease;
+            /* Añade una animación de transición para el cambio de color */
+        }
+
+        .icon-container i:hover {
+            color: #a62f2f;
+            /* Cambia el color al pasar el ratón por encima */
         }
 
         form {
-            background-color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -28,7 +60,9 @@
 
         label {
             font-size: 18px;
-            color: #333;
+            font-weight: bold;
+            /* Añade más peso a las palabras */
+            color: #ffffff;
             display: block;
             margin-bottom: 8px;
         }
@@ -36,12 +70,22 @@
         input[type="text"],
         textarea,
         input[type="number"] {
-            width: calc(100% - 1rem);
+            width: 100%;
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            margin-bottom: .5rem;
+            background-color: rgba(255, 255, 255, 0.814);
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="text"]:hover,
+        input[type="password"]:hover,
+        input[type="number"]:hover,
+        textarea:hover {
+
+            background-color: #ffffff;
+
         }
 
         textarea {
@@ -84,7 +128,6 @@
             text-overflow: ellipsis;
             text-align: center;
             /* Centra el texto horizontalmente */
-            
         }
 
         /* Estilos para el texto dentro del contenedor */
@@ -98,7 +141,6 @@
             margin-right: 5px;
             vertical-align: middle;
             /* Centra el texto verticalmente */
-        
         }
 
         .custom-file-upload.file-selected::before {
@@ -113,26 +155,35 @@
             width: 100%;
             padding: 12px;
             font-size: 18px;
-            background-color: #ff7f2ad5;
+            background-color: #a62f2f;
             color: white;
             border: none;
             border-radius: 5px;
             transition: background-color 0.3s ease;
             margin-top: 10px;
+            cursor: pointer;
         }
 
         button[type="submit"]:hover {
-            background-color: #ff5500;
+            background-color: #932a2a;
         }
     </style>
+
+
 </head>
 
 <body>
-    <form action="../PHP/ProcesarImagen.php" method="post" enctype="multipart/form-data">
+
+    <a href="../HTML/Insertar.html" class="icon-container">
+        <!-- Metemos el icono de ir hacia atrás -->
+        <i class="material-icons-outlined">arrow_back_ios</i>
+    </a>
+
+    <form action="../PHP/insertarDiscos.php" method="post" enctype="multipart/form-data">
         <label for="imagen">Portada del disco:</label>
         <input type="file" name="imagen" id="imagen" aria-label="Archivo" onchange="updateFileName(this)">
         <label class="custom-file-upload" for="imagen"><span></span></label>
-        <br><br>
+        <br>
         <label for="nombre">Nombre del disco:</label>
         <input type="text" name="nombre" id="nombre" required>
         <br><br>

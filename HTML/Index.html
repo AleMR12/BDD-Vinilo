@@ -9,20 +9,32 @@
     <!-- Ponemos el icono en la ventana -->
     <link rel="icon" type="image/x-icon" href="../../Mi-Proyecto/Imagenes/Extras/IsotipoMV.png">
 
+    <!-- Añadimos CSS -->
+    <link rel="stylesheet" href="../../Mi-Proyecto/CSS/Sing Up.css">
+    <link rel="stylesheet" type="text/css" href="../../Mi-Proyecto/CSS/Reset.css">
+
+    <!-- Fuente de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300&display=swap" rel="stylesheet">
+    
+
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #828282, #000000);
-            font-family: Arial, sans-serif;
+            background-image: url(../../Mi-Proyecto/Imagenes/Extras/FondoBDD.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            color: white;
         }
 
         form {
-            background-color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -31,21 +43,40 @@
             width: 100%;
         }
 
+        h2 {
+
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 2rem;
+
+        }
+
         input[type="text"],
         input[type="password"] {
-            width: calc(100% - 20px);
+            width: 100%;
             /* Ancho ajustado para compensar el padding */
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
+            margin-bottom: 1rem;
+            margin-top: .2rem;
+            transition: background-color 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.814);
+        }
+
+        input[type="text"]:hover,
+        input[type="password"]:hover{
+
+            background-color: #ffffff;
+
         }
 
         input[type="submit"] {
             width: 100%;
             padding: 10px;
-            background-color: #ff6600;
+            background-color: #a62f2f;
             color: white;
             border: none;
             border-radius: 5px;
@@ -54,12 +85,18 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #ff5500;
+            background-color: #932a2a;
         }
     </style>
 </head>
 
 <body>
+
+    <!-- Logo de la empresa -->
+    <a href="../../Mi-Proyecto/HTML/Index.html">
+        <img src="../../Mi-Proyecto/Imagenes/Extras/Logo.png" alt="Logo de la empresa" id="logo">
+    </a>
+
     <form action="../PHP/confirmarIdentidad.php" method="post">
         <h2>Iniciar Sesión</h2>
         <label for="usuario">Usuario:</label>
