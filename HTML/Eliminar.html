@@ -1,47 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mundo Vinilo</title>
 
-    <!-- Ponemos el icono la ventana -->
+    <!-- Ponemos el icono en la ventana -->
     <link rel="icon" type="image/x-icon" href="../../Mi-Proyecto/Imagenes/Extras/IsotipoMV.png">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selección de Sitio</title>
+    <!-- Añadimos CSS -->
+    <link rel="stylesheet" type="text/css" href="../../Mi-Proyecto/CSS/Reset.css">
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #828282, #000000);
-            /* Fondo degradado */
-            font-family: Arial, sans-serif;
+            background-image: url(../../Mi-Proyecto/Imagenes/Extras/FondoBDD.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        h1{
-
-            margin-bottom: 2rem;
-
+        h1 {
+            margin-bottom: 1rem;
         }
 
         .container {
             text-align: center;
+            margin-top: 1rem;
         }
 
         .button {
-            background-color: #ab3434;
+            background-color: #a62f2f;
             color: white;
             padding: 15px 30px;
             font-size: 18px;
@@ -51,24 +46,51 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
             text-decoration: none;
+            display: inline-block;
         }
 
         .button:hover {
-            background-color: #871e1e;
+            background-color: #932a2a;
+        }
+
+        .icon-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        a {
+            color: white;
+        }
+
+        a i:hover {
+            color: #a62f2f;
         }
     </style>
+    <!-- Añadimos Iconos de Google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Fuente de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
+    <a href="../HTML/SeleccionaOpcion.html">
+        <!-- Metemos el icono de ir hacia atrás -->
+        <div class="icon-container">
+            <i class="material-icons-outlined">arrow_back_ios</i>
+        </div>
+    </a>
+
     <div class="container">
         <h1>¿Qué quieres eliminar?</h1>
-        <a href="../HTML/InsertarDisco.html" class="button">Disco</a>
-        <a href="https://www.sitio2.com" class="button">Artista</a>
-        <a href="https://www.sitio3.com" class="button">Concierto</a>
+        <a href="..//PHP/mostrarEliminarDiscos.php" class="button">Disco</a>
+        <a href="../PHP/mostrarEliminarArtistas.php" class="button">Artista</a>
+        <a href="../HTML/EliminarUsuarios.html" class="button">Usuario</a>
     </div>
 </body>
 
-</html>
-
-</body>
 </html>

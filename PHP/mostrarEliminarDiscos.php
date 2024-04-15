@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Discos - Mundo Vinilo</title>
+    <title>Eliminar Discos</title>
+
+    <!-- Ponemos el icono en la ventana -->
+    <link rel="icon" type="image/x-icon" href="../../Mi-Proyecto/Imagenes/Extras/IsotipoMV.png">
 
     <!-- Añadimos CSS -->
     <link rel="stylesheet" type="text/css" href="../../Mi-Proyecto/CSS/Reset.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/eliminarArtistas.css">
 
     <!-- Añadimos Iconos de Google -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
@@ -39,6 +43,7 @@
             text-align: center;
         }
 
+
         /* Estilos para el icono de ir hacia atrás */
         .icon-container {
             position: absolute;
@@ -57,63 +62,82 @@
             /* Cambia el color al pasar el ratón por encima */
         }
 
-        .disco-list {
+        .artista-list {
             list-style-type: none;
             padding: 0;
             text-align: center;
             margin-top: 50px;
         }
 
-        .disco-item {
+        .artista-item {
             margin-bottom: 20px;
         }
 
-        .disco-item a {
-            text-decoration: none;
-            color: white;
-            transition: color 0.3s ease;
+        input[type="checkbox"] {
+            display: inline-block;
+            margin-right: 10px;
         }
 
-        .disco-item a:hover {
-            color: #a62f2f;
-            /* Cambia el color al pasar el ratón por encima */
+        input[type="submit"] {
+            width: auto;
+            /* Cambiado de 100% a auto */
+            margin: 1rem;
+            padding: 10px;
+            box-sizing: border-box;
+            border: none;
+            background-color: #cc3e3e;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            
+        }
+
+
+        input[type="submit"]:hover {
+            background-color: #871e1e;
         }
     </style>
 </head>
 
 <body>
-    <a href="../HTML/Modificar.html">
+    <a href="../HTML/Eliminar.html">
         <!-- Metemos el icono de ir hacia atrás -->
         <div class="icon-container">
             <i class="material-icons-outlined">arrow_back_ios</i>
         </div>
     </a>
 
-    <h1>Lista de Discos</h1>
+    <h1>Eliminar Discos</h1>
 
-    <?php
+    <form action="eliminarDiscos.php" method="post">
+        <ul class='artista-list'>
+            <?php
+            //Conexion a la BDD
+            require('../../Mi-Proyecto/PHP/conexionBDD.php');
 
-    //Conexion a la BDD
-    require('../../Mi-Proyecto/PHP/conexionBDD.php');
+            // Consulta a la base de datos para obtener los discos
+            $sql = "SELECT * FROM discos";
+            $result = $conexion->query($sql);
 
-    // Consulta a la base de datos para obtener los discos
-    $sql = "SELECT * FROM discos";
-    $result = $conexion->query($sql);
+            if ($result->num_rows > 0) {
+                // Mostrar los discos con casillas de verificación para seleccionar
+                while ($row = $result->fetch_assoc()) {
+                    echo "<li class='artista-item'><input type='checkbox' name='discos[]' value='" . $row['ID'] . "'>" . $row["Nombre"] . " - " . $row["Artista"] . "</li>";
+                }
+                // Mostrar el botón solo si hay discos registrados
+                echo "<input type='submit' value='Eliminar Seleccionados'>";
+            } else {
+                echo "No hay discos registrados.";
+            }
+            
 
-    if ($result->num_rows > 0) {
-        // Mostrar los datos de cada disco
-        echo "<ul class='disco-list'>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<li class='disco-item'><a href='editarDiscos.php?id=" . $row["ID"] . "'>" . $row["Nombre"] . "</a></li>";
-        }
-        echo "</ul>";
-    } else {
-        echo "No hay discos registrados.";
-    }
-
-    // Cerrar conexión
-    $conexion->close();
-    ?>
+            // Cerrar conexión
+            $conexion->close();
+            ?>
+        </ul>
+        
+    </form>
 </body>
 
 </html>
