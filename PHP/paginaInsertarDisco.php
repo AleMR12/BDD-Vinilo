@@ -167,6 +167,22 @@
         button[type="submit"]:hover {
             background-color: #932a2a;
         }
+
+        /* Estilos para el campo de selección de artistas */
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.814);
+            transition: background-color 0.3s ease;
+        }
+
+        select:hover {
+            background-color: #ffffff;
+        }
+        
     </style>
 
 
@@ -196,6 +212,30 @@
         <br><br>
         <label for="existencias">Existencias:</label>
         <input type="number" name="existencias" id="existencias" required>
+        <br><br>
+        <!-- Agregamos el campo de selección de artistas -->
+        <label for="artista">Artista:</label>
+        <select name="artista" id="artista" required>
+            <option value="" disabled selected>Selecciona un artista</option>
+            <?php
+            // Conexion a la BDD
+            require('../../Mi-Proyecto/PHP/conexionBDD.php');
+
+            // Consulta a la base de datos para obtener los artistas
+            $sql = "SELECT * FROM artistas";
+            $result = $conexion->query($sql);
+
+            if ($result->num_rows > 0) {
+                // Mostrar los artistas en el campo de selección
+                while ($row = $result->fetch_assoc()) {
+                    echo "<option value='" . $row['ID'] . "'>" . $row["Nombre_Artistico"] . "</option>";
+                }
+            }
+
+            // Cerrar conexión
+            $conexion->close();
+            ?>
+        </select>
         <br><br>
         <button type="submit">Subir</button>
     </form>

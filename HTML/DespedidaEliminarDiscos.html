@@ -4,14 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Discos</title>
+    <title>Despedida - Mundo Vinilo</title>
 
     <!-- Ponemos el icono en la ventana -->
     <link rel="icon" type="image/x-icon" href="../../Mi-Proyecto/Imagenes/Extras/IsotipoMV.png">
 
     <!-- Añadimos CSS -->
     <link rel="stylesheet" type="text/css" href="../../Mi-Proyecto/CSS/Reset.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/eliminarArtistas.css">
 
     <!-- Añadimos Iconos de Google -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
@@ -28,21 +27,19 @@
             background-image: url(../../Mi-Proyecto/Imagenes/Extras/FondoBDD.jpg);
             background-repeat: no-repeat;
             background-size: cover;
+            height: 100vh;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
             color: white;
-            font-family: 'Montserrat', sans-serif;
         }
 
         h1 {
             font-size: 48px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             margin-bottom: 20px;
-            margin-top: 4rem;
             text-align: center;
         }
-
 
         /* Estilos para el icono de ir hacia atrás */
         .icon-container {
@@ -53,48 +50,38 @@
         }
 
         .icon-container i {
-            transition: color 0.3s ease;
-            /* Añade una animación de transición para el cambio de color */
+            transition: color 0.3s ease; /* Añade una animación de transición para el cambio de color */
         }
 
         .icon-container i:hover {
-            color: #a62f2f;
-            /* Cambia el color al pasar el ratón por encima */
+            color: #a62f2f; /* Cambia el color al pasar el ratón por encima */
         }
 
-        .artista-list {
-            list-style-type: none;
-            padding: 0;
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        .artista-item {
+        p {
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             margin-bottom: 20px;
+            text-align: center;
         }
 
-        input[type="checkbox"] {
-            display: inline-block;
-            margin-right: 10px;
+        /* Estilos para centrar el botón horizontalmente */
+        .button-container {
+            display: flex;
+            justify-content: center;
         }
 
-        input[type="submit"] {
-            width: auto;
-            /* Cambiado de 100% a auto */
-            margin: 1rem;
-            padding: 10px;
-            box-sizing: border-box;
-            border: none;
-            background-color: #cc3e3e;
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ab3434;
             color: white;
+            border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            
         }
 
-
-        input[type="submit"]:hover {
+        button:hover {
             background-color: #871e1e;
         }
     </style>
@@ -107,37 +94,14 @@
             <i class="material-icons-outlined">arrow_back_ios</i>
         </div>
     </a>
-
-    <h1>Eliminar Discos</h1>
-
-    <form action="eliminarDiscos.php" method="post">
-        <ul class='artista-list'>
-            <?php
-            //Conexion a la BDD
-            require('../../Mi-Proyecto/PHP/conexionBDD.php');
-
-            // Consulta a la base de datos para obtener los discos
-            $sql = "SELECT * FROM discos";
-            $result = $conexion->query($sql);
-
-            if ($result->num_rows > 0) {
-                // Mostrar los discos con casillas de verificación para seleccionar
-                while ($row = $result->fetch_assoc()) {
-                    echo "<li class='artista-item'><input type='checkbox' name='discos[]' value='" . $row['ID'] . "'>" . $row["Nombre"] . "</li>";
-                }
-                // Mostrar el botón solo si hay discos registrados
-                echo "<input type='submit' value='Eliminar Seleccionados'>";
-            } else {
-                echo "No hay discos registrados.";
-            }
-            
-
-            // Cerrar conexión
-            $conexion->close();
-            ?>
-        </ul>
-        
-    </form>
+    <div>
+        <h1>¡Tu selección ha sido eliminada correctamente!</h1>
+        <p>Pulsa el botón si quieres eliminar otro disco o, por el contrario, cierra la página si has terminado.</p>
+        <!-- Agregamos un contenedor para centrar el botón horizontalmente -->
+        <div class="button-container">
+            <a href="../PHP/mostrarEliminarDiscos.php"><button>Eliminar más discos</button></a>
+        </div>
+    </div>
 </body>
 
 </html>

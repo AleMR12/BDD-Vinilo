@@ -12,20 +12,19 @@ if (isset($_FILES["imagen"])) {
     // Mover el archivo de la carpeta temporal a la carpeta destino
     move_uploaded_file($_FILES["imagen"]["tmp_name"], $carpeta_destino . $nombre_imagen);
 
-
-
     // Guardar la información en la base de datos
     $nombre = $_POST['nombre'];
     $descripcion = $_POST['descripcion'];
     $precio = $_POST['precio'];
     $existencias = $_POST['existencias'];
+    $id_artista = $_POST['artista']; // Agregamos la variable para almacenar el ID del artista seleccionado
 
     // Conexión a la base de datos
     require('../../Mi-Proyecto/PHP/conexionBDD.php');
 
     // Preparar la consulta SQL para insertar los datos en la tabla discos
-    $sql = "INSERT INTO discos (Nombre, Descripción, Precio, Existencias, Foto) 
-            VALUES ('$nombre', '$descripcion', $precio, $existencias, '$carpeta_destino$nombre_imagen')";
+    $sql = "INSERT INTO discos (Nombre, Descripción, Precio, Existencias, Foto, ID_Artista) 
+            VALUES ('$nombre', '$descripcion', $precio, $existencias, '$carpeta_destino$nombre_imagen', $id_artista)";
 
     // Ejecutar la consulta
     if ($conexion->query($sql) === TRUE) {
@@ -41,3 +40,4 @@ if (isset($_FILES["imagen"])) {
 } else {
     echo "No se ha enviado ninguna imagen.";
 }
+?>

@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Discos</title>
+    <title>Eliminar Usuarios</title>
 
     <!-- Ponemos el icono en la ventana -->
     <link rel="icon" type="image/x-icon" href="../../Mi-Proyecto/Imagenes/Extras/IsotipoMV.png">
 
     <!-- Añadimos CSS -->
     <link rel="stylesheet" type="text/css" href="../../Mi-Proyecto/CSS/Reset.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/eliminarArtistas.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/eliminarUsuarios.css">
 
     <!-- Añadimos Iconos de Google -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
@@ -43,7 +43,6 @@
             text-align: center;
         }
 
-
         /* Estilos para el icono de ir hacia atrás */
         .icon-container {
             position: absolute;
@@ -62,14 +61,14 @@
             /* Cambia el color al pasar el ratón por encima */
         }
 
-        .artista-list {
+        .usuario-list {
             list-style-type: none;
             padding: 0;
             text-align: center;
             margin-top: 50px;
         }
 
-        .artista-item {
+        .usuario-item {
             margin-bottom: 20px;
         }
 
@@ -90,9 +89,7 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            
         }
-
 
         input[type="submit"]:hover {
             background-color: #871e1e;
@@ -108,35 +105,33 @@
         </div>
     </a>
 
-    <h1>Eliminar Discos</h1>
+    <h1>Eliminar Usuarios</h1>
 
-    <form action="eliminarDiscos.php" method="post">
-        <ul class='artista-list'>
+    <form action="eliminarUsuarios.php" method="post">
+        <ul class='usuario-list'>
             <?php
             //Conexion a la BDD
             require('../../Mi-Proyecto/PHP/conexionBDD.php');
 
-            // Consulta a la base de datos para obtener los discos
-            $sql = "SELECT * FROM discos";
+            // Consulta a la base de datos para obtener los usuarios
+            $sql = "SELECT * FROM usuarios";
             $result = $conexion->query($sql);
 
             if ($result->num_rows > 0) {
-                // Mostrar los discos con casillas de verificación para seleccionar
+                // Mostrar los usuarios con casillas de verificación para seleccionar
                 while ($row = $result->fetch_assoc()) {
-                    echo "<li class='artista-item'><input type='checkbox' name='discos[]' value='" . $row['ID'] . "'>" . $row["Nombre"] . "</li>";
+                    echo "<li class='usuario-item'><input type='checkbox' name='usuarios[]' value='" . $row['ID'] . "'>" . $row["Nombre"] . " " . $row["Apellido1"] . " " . $row["Apellido2"] . "</li>";
                 }
-                // Mostrar el botón solo si hay discos registrados
+                // Mostrar el botón solo si hay usuarios registrados
                 echo "<input type='submit' value='Eliminar Seleccionados'>";
             } else {
-                echo "No hay discos registrados.";
+                echo "No hay usuarios registrados.";
             }
-            
 
             // Cerrar conexión
             $conexion->close();
             ?>
         </ul>
-        
     </form>
 </body>
 
