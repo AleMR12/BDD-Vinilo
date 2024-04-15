@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Discos - Mundo Vinilo</title>
+    <title>Lista de Artistas - Mundo Vinilo</title>
 
     <!-- Añadimos CSS -->
     <link rel="stylesheet" type="text/css" href="../../Mi-Proyecto/CSS/Reset.css">
@@ -48,35 +48,32 @@
         }
 
         .icon-container i {
-            transition: color 0.3s ease;
-            /* Añade una animación de transición para el cambio de color */
+            transition: color 0.3s ease; /* Añade una animación de transición para el cambio de color */
         }
 
         .icon-container i:hover {
-            color: #a62f2f;
-            /* Cambia el color al pasar el ratón por encima */
+            color: #a62f2f; /* Cambia el color al pasar el ratón por encima */
         }
 
-        .disco-list {
+        .artista-list {
             list-style-type: none;
             padding: 0;
             text-align: center;
             margin-top: 50px;
         }
 
-        .disco-item {
+        .artista-item {
             margin-bottom: 20px;
         }
 
-        .disco-item a {
+        .artista-item a {
             text-decoration: none;
             color: white;
             transition: color 0.3s ease;
         }
 
-        .disco-item a:hover {
-            color: #a62f2f;
-            /* Cambia el color al pasar el ratón por encima */
+        .artista-item a:hover {
+            color: #a62f2f; /* Cambia el color al pasar el ratón por encima */
         }
     </style>
 </head>
@@ -89,26 +86,26 @@
         </div>
     </a>
 
-    <h1>Lista de Discos</h1>
+    <h1>Lista de Artistas</h1>
 
     <?php
-
+    
     //Conexion a la BDD
     require('../../Mi-Proyecto/PHP/conexionBDD.php');
 
-    // Consulta a la base de datos para obtener los discos
-    $sql = "SELECT * FROM discos";
+    // Consulta a la base de datos para obtener los artistas
+    $sql = "SELECT * FROM artistas";
     $result = $conexion->query($sql);
 
     if ($result->num_rows > 0) {
-        // Mostrar los datos de cada disco
-        echo "<ul class='disco-list'>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<li class='disco-item'><a href='editarDiscos.php?id=" . $row["ID"] . "'>" . $row["Nombre"] . "</a></li>";
+        // Mostrar los datos de cada artista
+        echo "<ul class='artista-list'>";
+        while($row = $result->fetch_assoc()) {
+            echo "<li class='artista-item'><a href='editarArtistas.php?id=" . $row["ID"] . "'>" . $row["Nombre_Artistico"] . " - " . $row["Nombre"] . " " . $row["Apellido1"] . " " . $row["Apellido2"] . "</a></li>";
         }
         echo "</ul>";
     } else {
-        echo "No hay discos registrados.";
+        echo "No hay artistas registrados.";
     }
 
     // Cerrar conexión
