@@ -35,6 +35,75 @@
             font-family: 'Montserrat', sans-serif;
         }
 
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            /* Añade más peso a las palabras */
+            color: #ffffff;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        
+        input[type="file"] {
+            display: none;
+            /* Ocultamos el input original */
+        }
+
+        input[type="file"]:focus+.custom-file-upload {
+            border-color: #999;
+        }
+
+        input[type="file"]:focus+.custom-file-upload::before {
+            border-color: #999;
+        }
+
+        .custom-file-upload::before {
+            content: 'Selecciona tu archivo';
+            position: absolute;
+            top: 10;
+            left: 0;
+            right: 0;
+            visibility: visible;
+        }
+
+        /* Estilos para el contenedor del archivo seleccionado */
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-align: center;
+            /* Centra el texto horizontalmente */
+        }
+
+        /* Estilos para el texto dentro del contenedor */
+        .custom-file-upload span {
+            display: inline-block;
+            max-width: calc(100% - 20px);
+            /* Ajusta el ancho máximo */
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-right: 5px;
+            vertical-align: middle;
+            /* Centra el texto verticalmente */
+        }
+
+        .custom-file-upload.file-selected::before {
+            visibility: hidden;
+        }
+
+        .custom-file-upload.file-selected span {
+            visibility: visible;
+        }
+
+
         h1 {
             font-size: 48px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -53,12 +122,10 @@
 
         .icon-container i {
             transition: color 0.3s ease;
-            /* Añade una animación de transición para el cambio de color */
         }
 
         .icon-container i:hover {
             color: #a62f2f;
-            /* Cambia el color al pasar el ratón por encima */
         }
 
         form {
@@ -71,7 +138,7 @@
         }
 
         input[type="text"],
-        input[type="number"]{
+        input[type="number"] {
             width: 100%;
             padding: 10px;
             box-sizing: border-box;
@@ -84,8 +151,7 @@
             margin-top: .5rem;
         }
 
-        textarea{
-
+        textarea {
             width: 100%;
             padding: 10px;
             height: 7rem;
@@ -98,7 +164,6 @@
             margin-bottom: 1rem;
             margin-top: .5rem;
             resize: none;
-
         }
 
         input[type="text"]:hover,
@@ -106,7 +171,6 @@
         textarea:hover {
             background-color: #ffffff;
         }
-
 
         input[type="submit"] {
             width: 100%;
@@ -123,6 +187,22 @@
 
         input[type="submit"]:hover {
             background-color: #871e1e;
+        }
+
+        /* Estilos para el campo de selección de artistas */
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: .5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.814);
+            transition: background-color 0.3s ease;
+        }
+
+        select:hover {
+            background-color: #ffffff;
         }
     </style>
 
@@ -151,12 +231,36 @@
             $row = $result->fetch_assoc();
     ?>
             <h1>Editar Disco</h1>
-            <form action="actualizarDiscos.php" method="post">
+            <form action="actualizarDiscos.php" method="post" enctype="multipart/form-data">
+                <label for="imagen">Portada del disco:</label>
+                <input type="file" name="imagen" id="imagen" aria-label="Archivo" onchange="updateFileName(this)">
+                <label class="custom-file-upload" for="imagen"><span></span></label>
+                <br>
                 <input type="hidden" name="id" value="<?php echo $row['ID']; ?>">
                 Nombre: <input type="text" name="nombre" value="<?php echo $row['Nombre']; ?>"><br>
                 Descripción: <textarea name="descripcion"><?php echo $row['Descripción']; ?></textarea><br>
                 Precio: <input type="number" name="precio" value="<?php echo $row['Precio']; ?>"><br>
                 Existencias: <input type="number" name="existencias" value="<?php echo $row['Existencias']; ?>"><br>
+                <!-- Agregamos el campo de selección de artistas -->
+                Artista:
+                <select name="artista">
+                    <?php
+                    // Consulta a la base de datos para obtener los artistas
+                    $sql_artistas = "SELECT * FROM artistas";
+                    $result_artistas = $conexion->query($sql_artistas);
+
+                    if ($result_artistas->num_rows > 0) {
+                        while ($row_artista = $result_artistas->fetch_assoc()) {
+                            if ($row_artista['ID'] == $row['ID_Artista']) {
+                                echo "<option value='" . $row_artista['ID'] . "' selected>" . $row_artista['Nombre_Artistico'] . "</option>";
+                            } else {
+                                echo "<option value='" . $row_artista['ID'] . "'>" . $row_artista['Nombre_Artistico'] . "</option>";
+                            }
+                        }
+                    }
+                    ?>
+                </select>
+                <br><br>
                 <input type="submit" value="Guardar Cambios">
             </form>
     <?php
@@ -170,6 +274,16 @@
         echo "<h1>ID de disco no especificado.</h1>";
     }
     ?>
+
+    <!-- Script para cambiar el nombre de "Seleccciona tu archivo" al nombre del archivo -->
+    <script>
+        function updateFileName(input) {
+            var fileName = input.files[0].name;
+            var label = input.nextElementSibling.querySelector('span');
+            label.textContent = fileName;
+            input.nextElementSibling.classList.add('file-selected');
+        }
+    </script>
 </body>
 
 </html>
