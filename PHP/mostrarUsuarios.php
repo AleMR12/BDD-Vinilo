@@ -90,12 +90,11 @@
     <h1>Lista de Usuarios</h1>
 
     <?php
-    
     //Conexion a la BDD
     require('../../Mi-Proyecto/PHP/conexionBDD.php');
 
     // Consulta a la base de datos para obtener los usuarios
-    $sql = "SELECT * FROM usuarios";
+    $sql = "SELECT * FROM usuarios WHERE nombre NOT LIKE 'root'";
     $result = $conexion->query($sql);
 
     if ($result->num_rows > 0) {
