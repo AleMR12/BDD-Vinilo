@@ -39,7 +39,7 @@ $contraseña_encriptada = password_hash($contraseña, PASSWORD_DEFAULT);
 $sql = "INSERT INTO usuarios (Nombre, Apellido1, Apellido2, Correo, Contraseña) VALUES (?, ?, ?, ?, ?)";
 
 // Preparar la declaración
-$stmt = $conexoin->prepare($sql);
+$stmt = $conexion->prepare($sql);
 
 // Vincular los parámetros con los valores
 $stmt->bind_param("sssss", $nombre, $apellido1, $apellido2, $correo, $contraseña_encriptada);

@@ -21,6 +21,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300&display=swap" rel="stylesheet">
 
+    <!-- Añadimos los archivos JS -->
+    <script src="../../Mi-Proyecto/JS/cambiarNombreSeleccionarArchivo.js"></script>
+
     <style>
         body {
             margin: 0;
@@ -71,7 +74,7 @@
         }
 
         input[type="text"],
-        input[type="number"]{
+        input[type="number"] {
             width: 100%;
             padding: 10px;
             box-sizing: border-box;
@@ -84,7 +87,7 @@
             margin-top: .5rem;
         }
 
-        textarea{
+        textarea {
 
             width: 100%;
             padding: 10px;
@@ -121,8 +124,75 @@
             transition: background-color 0.3s ease;
         }
 
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            /* Añade más peso a las palabras */
+            color: #ffffff;
+            display: block;
+            margin-bottom: 8px;
+        }
+
         input[type="submit"]:hover {
             background-color: #871e1e;
+        }
+
+        input[type="file"] {
+            display: none;
+            /* Ocultamos el input original */
+        }
+
+        input[type="file"]:focus+.custom-file-upload {
+            border-color: #999;
+        }
+
+        input[type="file"]:focus+.custom-file-upload::before {
+            border-color: #999;
+        }
+
+        .custom-file-upload::before {
+            content: 'Selecciona tu archivo';
+            position: absolute;
+            top: 10;
+            left: 0;
+            right: 0;
+            visibility: visible;
+        }
+
+        /* Estilos para el contenedor del archivo seleccionado */
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-align: center;
+            /* Centra el texto horizontalmente */
+        }
+
+        /* Estilos para el texto dentro del contenedor */
+        .custom-file-upload span {
+            display: inline-block;
+            max-width: calc(100% - 20px);
+            /* Ajusta el ancho máximo */
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-right: 5px;
+            vertical-align: middle;
+            /* Centra el texto verticalmente */
+        }
+
+        .custom-file-upload.file-selected::before {
+            visibility: hidden;
+        }
+
+        .custom-file-upload.file-selected span {
+            visibility: visible;
         }
     </style>
 
@@ -151,14 +221,20 @@
             $row = $result->fetch_assoc();
     ?>
             <h1>Editar Artista</h1>
-            <form action="actualizarArtistas.php" method="post">
+            <form action="actualizarArtistas.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $row['ID']; ?>">
                 Nombre Artístico: <input type="text" name="nombre_artistico" value="<?php echo $row['Nombre_Artistico']; ?>"><br>
                 Nombre: <input type="text" name="nombre" value="<?php echo $row['Nombre']; ?>"><br>
                 Apellido 1: <input type="text" name="apellido1" value="<?php echo $row['Apellido1']; ?>"><br>
                 Apellido 2: <input type="text" name="apellido2" value="<?php echo $row['Apellido2']; ?>"><br>
+                <!-- Agregamos el campo de carga de imagen del artista -->
+                <label for="imagen">Foto del artista:</label>
+                <input type="file" name="imagen" id="imagen" aria-label="Archivo" onchange="updateFileName(this)">
+                <label class="custom-file-upload" for="imagen"><span></span></label>
+                <br>
                 <input type="submit" value="Guardar Cambios">
             </form>
+
     <?php
         } else {
             echo "<h1>No se encontró el artista.</h1>";

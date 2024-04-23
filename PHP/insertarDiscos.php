@@ -1,3 +1,6 @@
+<!-- Ponemos el icono en la ventana -->
+<link rel="icon" type="image/x-icon" href="../../Mi-Proyecto/Imagenes/Extras/IsotipoMV.png">
+
 <?php
 // Verificar si se ha enviado una imagen
 if (isset($_FILES["imagen"])) {

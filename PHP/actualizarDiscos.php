@@ -1,3 +1,6 @@
+<!-- Ponemos el icono en la ventana -->
+<link rel="icon" type="image/x-icon" href="../../Mi-Proyecto/Imagenes/Extras/IsotipoMV.png">
+
 <?php
 // Verificar si se recibieron los datos del formulario correctamente
 if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['existencias']) && isset($_POST['artista'])) {

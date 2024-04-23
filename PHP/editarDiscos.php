@@ -21,6 +21,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300&display=swap" rel="stylesheet">
 
+    <!-- Añadimos los archivos JS -->
+    <script src="../../Mi-Proyecto/JS/cambiarNombreSeleccionarArchivo.js"></script>
+
     <style>
         body {
             margin: 0;
@@ -274,16 +277,6 @@
         echo "<h1>ID de disco no especificado.</h1>";
     }
     ?>
-
-    <!-- Script para cambiar el nombre de "Seleccciona tu archivo" al nombre del archivo -->
-    <script>
-        function updateFileName(input) {
-            var fileName = input.files[0].name;
-            var label = input.nextElementSibling.querySelector('span');
-            label.textContent = fileName;
-            input.nextElementSibling.classList.add('file-selected');
-        }
-    </script>
 </body>
 
 </html>

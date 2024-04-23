@@ -208,6 +208,10 @@
             <label for="apellido2">Apellido 2:</label>
             <input type="text" name="apellido2" id="apellido2" required>
             <br><br>
+            <label for="imagen">Foto del artista</label>
+            <input type="file" name="imagen" id="imagen" aria-label="Archivo" onchange="updateFileName(this)">
+            <label class="custom-file-upload" for="imagen"><span></span></label>
+            <br>
             <button type="submit">Registrar</button>
         </form>
     </div>
