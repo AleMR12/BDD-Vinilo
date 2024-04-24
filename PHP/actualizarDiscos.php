@@ -12,6 +12,9 @@ if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['descripcion'
     $existencias = $_POST['existencias'];
     $artista_id = $_POST['artista'];
 
+    // Conexion a la BDD
+    require('../../Mi-Proyecto/PHP/conexionBDD.php');
+    
     // Verificar si se recibió una nueva imagen
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
         // Guardar la nueva imagen en la carpeta de destino
@@ -33,8 +36,6 @@ if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['descripcion'
         $sql = "UPDATE discos SET Nombre='$nombre', Descripción='$descripcion', Precio=$precio, Existencias=$existencias, ID_Artista=$artista_id WHERE ID=$disco_id";
     }
 
-    // Conexion a la BDD
-    require('../../Mi-Proyecto/PHP/conexionBDD.php');
 
     // Ejecutar la consulta SQL
     if ($conexion->query($sql) === TRUE) {

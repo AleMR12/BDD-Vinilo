@@ -194,6 +194,18 @@
         .custom-file-upload.file-selected span {
             visibility: visible;
         }
+
+        textarea {
+            resize: none;
+            /* Deshabilitar el redimensionamiento */
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.814);
+            transition: background-color 0.3s ease;
+        }
     </style>
 
 </head>
@@ -227,6 +239,7 @@
                 Nombre: <input type="text" name="nombre" value="<?php echo $row['Nombre']; ?>"><br>
                 Apellido 1: <input type="text" name="apellido1" value="<?php echo $row['Apellido1']; ?>"><br>
                 Apellido 2: <input type="text" name="apellido2" value="<?php echo $row['Apellido2']; ?>"><br>
+                Descripción: <textarea name="descripcion"><?php echo $row['Descripción']; ?></textarea><br>
                 <!-- Agregamos el campo de carga de imagen del artista -->
                 <label for="imagen">Foto del artista:</label>
                 <input type="file" name="imagen" id="imagen" aria-label="Archivo" onchange="updateFileName(this)">

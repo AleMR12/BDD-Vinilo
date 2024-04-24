@@ -181,6 +181,18 @@
             font-size: 14px;
             margin-top: 5px;
         }
+
+        textarea {
+            resize: none;
+            /* Deshabilitar el redimensionamiento */
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.814);
+            transition: background-color 0.3s ease;
+        }
     </style>
 
 
@@ -207,6 +219,9 @@
             <br><br>
             <label for="apellido2">Apellido 2:</label>
             <input type="text" name="apellido2" id="apellido2" required>
+            <br><br>
+            <label for="descripcion">Descripción:</label>
+            <textarea name="descripcion" id="descripcion" cols="30" rows="5" required></textarea>
             <br><br>
             <label for="imagen">Foto del artista</label>
             <input type="file" name="imagen" id="imagen" aria-label="Archivo" onchange="updateFileName(this)">
