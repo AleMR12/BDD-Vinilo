@@ -59,7 +59,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             width: 20rem;
-
+            margin-bottom: 3rem;
         }
 
         label {
@@ -208,6 +208,10 @@
         <h1>Insertar Artista</h1>
 
         <form action="../PHP/insertarArtista.php" method="post">
+            <label for="imagen">Foto del artista</label>
+            <input type="file" name="imagen" id="imagen" aria-label="Archivo" onchange="updateFileName(this)">
+            <label class="custom-file-upload" for="imagen"><span></span></label>
+            <br>
             <label for="nombre_artistico">Nombre Artístico:</label>
             <input type="text" name="nombre_artistico" id="nombre_artistico" required>
             <br><br>
@@ -223,10 +227,6 @@
             <label for="descripcion">Descripción:</label>
             <textarea name="descripcion" id="descripcion" cols="30" rows="5" required></textarea>
             <br><br>
-            <label for="imagen">Foto del artista</label>
-            <input type="file" name="imagen" id="imagen" aria-label="Archivo" onchange="updateFileName(this)">
-            <label class="custom-file-upload" for="imagen"><span></span></label>
-            <br>
             <button type="submit">Registrar</button>
         </form>
     </div>

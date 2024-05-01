@@ -9,6 +9,9 @@
     <!-- Añadimos CSS -->
     <link rel="stylesheet" type="text/css" href="../../Mi-Proyecto/CSS/Reset.css">
 
+    <!-- Ponemos el icono en la ventana -->
+    <link rel="icon" type="image/x-icon" href="../../Mi-Proyecto/Imagenes/Extras/IsotipoMV.png">
+
     <!-- Añadimos Iconos de Google -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 

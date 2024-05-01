@@ -71,6 +71,7 @@
             width: 20rem;
             font-weight: bold;
             margin-top: 1rem;
+            margin-bottom: 3rem;
         }
 
         input[type="text"],
@@ -122,6 +123,7 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+
         }
 
         label {
@@ -235,16 +237,16 @@
             <h1>Editar Artista</h1>
             <form action="actualizarArtistas.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $row['ID']; ?>">
-                Nombre Artístico: <input type="text" name="nombre_artistico" value="<?php echo $row['Nombre_Artistico']; ?>"><br>
-                Nombre: <input type="text" name="nombre" value="<?php echo $row['Nombre']; ?>"><br>
-                Apellido 1: <input type="text" name="apellido1" value="<?php echo $row['Apellido1']; ?>"><br>
-                Apellido 2: <input type="text" name="apellido2" value="<?php echo $row['Apellido2']; ?>"><br>
-                Descripción: <textarea name="descripcion"><?php echo $row['Descripción']; ?></textarea><br>
                 <!-- Agregamos el campo de carga de imagen del artista -->
                 <label for="imagen">Foto del artista:</label>
                 <input type="file" name="imagen" id="imagen" aria-label="Archivo" onchange="updateFileName(this)">
                 <label class="custom-file-upload" for="imagen"><span></span></label>
                 <br>
+                Nombre Artístico: <input type="text" name="nombre_artistico" value="<?php echo $row['Nombre_Artistico']; ?>"><br>
+                Nombre: <input type="text" name="nombre" value="<?php echo $row['Nombre']; ?>"><br>
+                Apellido 1: <input type="text" name="apellido1" value="<?php echo $row['Apellido1']; ?>"><br>
+                Apellido 2: <input type="text" name="apellido2" value="<?php echo $row['Apellido2']; ?>"><br>
+                Descripción: <textarea name="descripcion"><?php echo $row['Descripción']; ?></textarea><br>
                 <input type="submit" value="Guardar Cambios">
             </form>
 

@@ -185,7 +185,6 @@
         select:hover {
             background-color: #ffffff;
         }
-        
     </style>
 
 
@@ -210,11 +209,13 @@
         <textarea name="descripcion" id="descripcion" cols="30" rows="5" required></textarea>
         <br><br>
         <label for="precio">Precio:</label>
-        <input type="text" name="precio" id="precio" pattern="\d+(\.\d{1,2})?"
-            title="Debe ser un número decimal válido (p. ej., 10.99)" required>
+        <input type="text" name="precio" id="precio" pattern="\d+(\.\d{1,2})?" title="Debe ser un número decimal válido (p. ej., 10.99)" required>
         <br><br>
         <label for="existencias">Existencias:</label>
         <input type="number" name="existencias" id="existencias" required>
+        <br><br>
+        <label for="spotify">Link del álbum:</label>
+        <input type="text" name="enlacespotify" id="enlace_spotify" placeholder="spotify:album:" required>
         <br><br>
         <!-- Agregamos el campo de selección de artistas -->
         <label for="artista">Artista:</label>

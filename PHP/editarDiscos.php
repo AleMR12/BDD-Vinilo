@@ -47,7 +47,7 @@
             margin-bottom: 8px;
         }
 
-        
+
         input[type="file"] {
             display: none;
             /* Ocultamos el input original */
@@ -138,6 +138,7 @@
             width: 20rem;
             font-weight: bold;
             margin-top: 1rem;
+            margin-bottom: 3rem;
         }
 
         input[type="text"],
@@ -240,10 +241,12 @@
                 <label class="custom-file-upload" for="imagen"><span></span></label>
                 <br>
                 <input type="hidden" name="id" value="<?php echo $row['ID']; ?>">
-                Nombre: <input type="text" name="nombre" value="<?php echo $row['Nombre']; ?>"><br>
-                Descripción: <textarea name="descripcion"><?php echo $row['Descripción']; ?></textarea><br>
-                Precio: <input type="number" name="precio" value="<?php echo $row['Precio']; ?>"><br>
-                Existencias: <input type="number" name="existencias" value="<?php echo $row['Existencias']; ?>"><br>
+                Nombre: <input type="text" name="nombre" value="<?php echo $row['Nombre']; ?>" require><br>
+                Descripción: <textarea name="descripcion" require><?php echo $row['Descripción']; ?></textarea><br>
+                Precio: <input type="number" name="precio" value="<?php echo $row['Precio']; ?>" require><br>
+                Existencias: <input type="number" name="existencias" value="<?php echo $row['Existencias']; ?>" require><br>
+                <!-- Nuevo campo para el enlace de Spotify -->
+                Enlace de Spotify: <input type="text" name="enlace_spotify" value="<?php echo $row['EnlaceSpotify']; ?>" require><br>
                 <!-- Agregamos el campo de selección de artistas -->
                 Artista:
                 <select name="artista">
