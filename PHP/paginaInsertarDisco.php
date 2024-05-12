@@ -33,6 +33,7 @@
             align-items: center;
             color: white;
             font-family: 'Montserrat', sans-serif;
+            margin: 4rem 0 4rem 0;
         }
 
         /* Estilos para el icono de ir hacia atrás */
@@ -57,8 +58,9 @@
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 400px;
+            padding: 1rem;
+            width: 25rem;
+            margin-bottom: 1rem;
         }
 
         label {
@@ -107,6 +109,14 @@
 
         input[type="file"]:focus+.custom-file-upload::before {
             border-color: #999;
+        }
+
+        h1 {
+            font-size: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            margin-top: 5rem;
+            text-align: center;
         }
 
         .custom-file-upload::before {
@@ -196,53 +206,56 @@
         <!-- Metemos el icono de ir hacia atrás -->
         <i class="material-icons-outlined">arrow_back_ios</i>
     </a>
+    <div>
+        <h1>Insertar Disco</h1> <!-- Movemos el título aquí -->
 
-    <form action="../PHP/insertarDiscos.php" method="post" enctype="multipart/form-data">
-        <label for="imagen">Portada del disco:</label>
-        <input type="file" name="imagen" id="imagen" aria-label="Archivo" onchange="updateFileName(this)">
-        <label class="custom-file-upload" for="imagen"><span></span></label>
-        <br>
-        <label for="nombre">Nombre del disco:</label>
-        <input type="text" name="nombre" id="nombre" required>
-        <br><br>
-        <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" id="descripcion" cols="30" rows="5" required></textarea>
-        <br><br>
-        <label for="precio">Precio:</label>
-        <input type="text" name="precio" id="precio" pattern="\d+(\.\d{1,2})?" title="Debe ser un número decimal válido (p. ej., 10.99)" required>
-        <br><br>
-        <label for="existencias">Existencias:</label>
-        <input type="number" name="existencias" id="existencias" required>
-        <br><br>
-        <label for="spotify">Link del álbum:</label>
-        <input type="text" name="enlacespotify" id="enlace_spotify" placeholder="spotify:album:" required>
-        <br><br>
-        <!-- Agregamos el campo de selección de artistas -->
-        <label for="artista">Artista:</label>
-        <select name="artista" id="artista" required>
-            <option value="" disabled selected>Selecciona un artista</option>
-            <?php
-            // Conexion a la BDD
-            require('../../Mi-Proyecto/PHP/conexionBDD.php');
+        <form action="../PHP/insertarDiscos.php" method="post" enctype="multipart/form-data">
+            <label for="imagen">Portada del disco:</label>
+            <input type="file" name="imagen" id="imagen" aria-label="Archivo" onchange="updateFileName(this)">
+            <label class="custom-file-upload" for="imagen"><span></span></label>
+            <br>
+            <label for="nombre">Nombre del disco:</label>
+            <input type="text" name="nombre" id="nombre" required>
+            <br><br>
+            <label for="descripcion">Descripción:</label>
+            <textarea name="descripcion" id="descripcion" cols="30" rows="5" required></textarea>
+            <br><br>
+            <label for="precio">Precio:</label>
+            <input type="text" name="precio" id="precio" pattern="\d+(\.\d{1,2})?" title="Debe ser un número decimal válido (p. ej., 10.99)" required>
+            <br><br>
+            <label for="existencias">Existencias:</label>
+            <input type="number" name="existencias" id="existencias" required>
+            <br><br>
+            <label for="spotify">Link del álbum:</label>
+            <input type="text" name="enlacespotify" id="enlace_spotify" placeholder="spotify:album:" required>
+            <br><br>
+            <!-- Agregamos el campo de selección de artistas -->
+            <label for="artista">Artista:</label>
+            <select name="artista" id="artista" required>
+                <option value="" disabled selected>Selecciona un artista</option>
+                <?php
+                // Conexion a la BDD
+                require('../../Mi-Proyecto/PHP/conexionBDD.php');
 
-            // Consulta a la base de datos para obtener los artistas
-            $sql = "SELECT * FROM artistas";
-            $result = $conexion->query($sql);
+                // Consulta a la base de datos para obtener los artistas
+                $sql = "SELECT * FROM artistas";
+                $result = $conexion->query($sql);
 
-            if ($result->num_rows > 0) {
-                // Mostrar los artistas en el campo de selección
-                while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row['ID'] . "'>" . $row["Nombre_Artistico"] . "</option>";
+                if ($result->num_rows > 0) {
+                    // Mostrar los artistas en el campo de selección
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<option value='" . $row['ID'] . "'>" . $row["Nombre_Artistico"] . "</option>";
+                    }
                 }
-            }
 
-            // Cerrar conexión
-            $conexion->close();
-            ?>
-        </select>
-        <br><br>
-        <button type="submit">Subir</button>
-    </form>
+                // Cerrar conexión
+                $conexion->close();
+                ?>
+            </select>
+            <br><br>
+            <button type="submit">Subir</button>
+        </form>
+    </div>
 
     <!-- Script para cambiar el nombre de "Seleccciona tu archivo" al nombre del archivo -->
     <script>
