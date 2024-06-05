@@ -227,7 +227,7 @@
             <input type="number" name="existencias" id="existencias" required>
             <br><br>
             <label for="spotify">Link del álbum:</label>
-            <input type="text" name="enlacespotify" id="enlace_spotify" placeholder="spotify:album:" required>
+            <input type="text" name="enlacespotify" id="enlace_spotify" placeholder="spotify:album:">
             <br><br>
             <!-- Agregamos el campo de selección de artistas -->
             <label for="artista">Artista:</label>
